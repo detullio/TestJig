@@ -3,6 +3,9 @@
 #include <boost/json.hpp>
 #include <boost/system/detail/errc.hpp>
 
+#include "boost/property_tree/ptree.hpp"
+#include "boost/property_tree/json_parser.hpp"
+
 #include <fstream>
 #include <iostream>
 #include <iterator>
@@ -58,4 +61,19 @@ namespace KDeTLearning
     }
   }
 
+  void tryParseTree(const std::string &fileName)
+  {
+
+    boost::property_tree::ptree pt;
+    boost::property_tree::read_json(fileName, pt);
+
+    for(auto &v : pt.get_child("testicles")) {
+
+      std::cout << v.first << " : " << v.second.data() << std::endl;
+            // etc
+    }
+
+   return;
+
+  }
 }
