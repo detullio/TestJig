@@ -67,10 +67,10 @@ namespace KDeTLearning
     boost::property_tree::ptree pt;
     boost::property_tree::read_json(fileName, pt);
 
-    for(auto &v : pt.get_child("testicles")) {
+    for(auto &v : pt.get_child("particles")) {
 
       std::cout << v.first << " : " << v.second.data() << std::endl;
-            // etc
+
     }
 
    return;
