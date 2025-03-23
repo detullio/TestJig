@@ -1,0 +1,64 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "debug",
+      "displayName": "Debug",
+      "generator": "Ninja",
+      "binaryDir": "build/debug",
+      "cacheVariables": {
+          "CMAKE_BUILD_TYPE": "Debug",
+          "CMAKE_VERBOSE_BUILD": "ON",
+          "CMAKE_INCLUDE_CURRENT_DIR": "ON",
+          "CMAKE_CXX_STANDARD": "20",
+          "CMAKE_VERBOSE_MAKEFILE": "ON",
+          "CMAKE_STANDARD_REQUIRED": "ON",
+          "CMAKE_CXX_EXTENSIONS": "OFF"
+      }
+    },
+    {
+      "name": "release",
+      "displayName": "Release",
+      "generator": "Ninja",
+      "binaryDir": "build/release",
+      "cacheVariables": {
+          "CMAKE_BUILD_TYPE": "Release",
+          "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+          "CMAKE_VERBOSE_MAKEFILE": "ON",
+          "CMAKE_INCLUDE_CURRENT_DIR": "ON",
+          "CMAKE_CXX_STANDARD": "20",
+          "CMAKE_STANDARD_REQUIRED": "ON",
+          "CMAKE_CXX_EXTENSIONS": "OFF"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "app-debug",
+      "displayName": "App Debug Build",
+      "configurePreset": "debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "app-release",
+      "displayName": "App Release Build",
+      "configurePreset": "release",
+      "configuration": "Release",
+      "targets": ["App"]
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "test-all",
+      "displayName": "Test All",
+      "configurePreset": "debug",
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "stopOnFailure": true
+      }
+    }
+  ]
+}
+
