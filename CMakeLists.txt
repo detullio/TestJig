@@ -30,8 +30,31 @@ find_package(Boost 1.81.0 REQUIRED COMPONENTS unit_test_framework json)
 
 set(CMAKE_BUILD_RPATH ${Boost_LIBRARY_DIRS})
 
-include_directories(${Boost_INCLUDE_DIRS})
+include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
 
-add_executable(SkeletalTestDriver ${SOURCE_FILES})
+include(FetchContent)
 
-target_link_libraries(SkeletalTestDriver ${Boost_LIBRARIES} ${CMAKE_DL_LIBS} stdc++fs)
+FetchContent_Populate(
+  ErrorDebugLog
+  GIT_SHALLOW true
+  GIT_REPOSITORY https://github.com/detullio/ErrorDebugLog.git
+  GIT_TAG origin/stable
+  SOURCE_DIR ${CMAKE_SOURCE_DIR}/ErrorDebugLog
+)
+add_subdirectory(ErrorDebugLog)
+FetchContent_Populate(
+  MpiExploration
+  GIT_REPOSITORY https://github.com/detullio/mpiExploration.git
+  GIT_TAG origin/stable
+  SOURCE_DIR ${CMAKE_SOURCE_DIR}/MpiExploration
+)
+add_subdirectory(MpiExploration)
+
+FetchContent_Populate(
+  SharedObjectExploration
+  GIT_REPOSITORY https://github.com/detullio/sharedObjectExploration.git
+  GIT_TAG origin/stable
+  SOURCE_DIR ${CMAKE_SOURCE_DIR}/SharedObjectExploration
+)
+add_subdirectory(SharedObjectExploration)
+
